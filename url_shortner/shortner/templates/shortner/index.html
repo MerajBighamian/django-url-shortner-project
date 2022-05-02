@@ -13,12 +13,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1rem;
+        padding: 2rem;
         }
 
         body {
         min-height: 100vh;
-        font-family: "Lato", sans-serif;
+        font-family: "Thahoma", sans-serif;
         line-height: 1.5;
         color: #111;
         }
@@ -26,16 +26,18 @@
         main {
         max-width: 720px;
         width: 100%;
-        border: 2.5px solid #330867;
-        border-radius: 2.5px;
+        border: 10px solid #3874ff;
+        border-radius: 15px;
         box-shadow: 0 10px 20px rgba(17, 17, 17, 0.125),
             0 5px 5px rgba(17, 17, 17, 0.25);
-        background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+        background-color: rgb(0, 97, 194);
         }
 
         h1 {
         padding: 1rem;
         color: white;
+        text-align: center;
+        font-size: 2rem;
         }
 
         input,
@@ -49,7 +51,10 @@
 
         input {
         box-sizing: border-box;
-        width: 100%;
+        width: 99%;
+        border-radius: 30px;
+        margin: 0px 10px 10px 4px;
+        padding-right: 1px;
         }
 
         .buttons {
@@ -59,28 +64,36 @@
         button {
         cursor: pointer;
         flex: 1;
-        background-color: transparent;
+        background-color: brown;
         color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 30px;
+        margin: 5px 4px 1px 4px;
         &:hover {
             background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
         }
         }
 
         section {
-        min-height: 120px;
+        min-height: 90px;
         text-align: center;
         background-color: white;
+        border-radius: 45px;
+        margin: -5px 4px 10px 4px;
+        
         }
 
     </style>
 </head>
 <main>
-  <h1>URL Shortener</h1>
+  <h1>کوتاه کننده لینک</h1>
   <form id="post-form">
     {% csrf_token %}
-  <input type="text" name="link" id="link" placeholder="Enter URL here">
+  <input type="text" name="link" id="link" required placeholder="example : https://google.com ">
   <div class="buttons">
-    <button type="submit" id="shorten">Shorten</button>
+    <button type="submit" id="shorten">کوتاه کردن</button>
   </div>
   </form>
   
@@ -100,6 +113,7 @@
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
       success: function(data){
+        // replace localhost with domain
         $('h2').html('localhost:8000/'+data)
       }
     });
